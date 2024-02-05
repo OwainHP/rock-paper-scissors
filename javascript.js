@@ -1,18 +1,13 @@
-let options = ["Rock","Paper","Scissors"];
 
+
+let options = ["Rock","Paper","Scissors"];
+let playerScore = 0;
+let computerScore = 0;
 function getComputerChoice () {
     let options = ["Rock","Paper","Scissors"];
     let random = Math.floor((Math.random() * options.length));
     let computerChoice = options[random];
     return computerChoice
-}
-
-function getPlayerChoice () {
-    let choice = prompt("Choose Rock, Paper or Scissors");
-    let capitaliseFirst = choice.charAt(0).toUpperCase();
-    let lowerCase = choice.slice(1).toLowerCase();
-    let choiceFixCapitalisation = capitaliseFirst + lowerCase;
-    return choiceFixCapitalisation;
 }
 
 function error () {
@@ -23,63 +18,60 @@ function error () {
         let error = 1;
         return error;
     }}
+    const btn = document.querySelectorAll('button');
 
-function game () {
-    let playerChoice = getPlayerChoice();
+    btn.forEach((button) => {
+        button.addEventListener('click', () => {      
+    let playerChoice = button.id;
     let computerChoice = getComputerChoice();
-    console.log("Your Choice: " + playerChoice);
-    console.log("Computer Choice: " + computerChoice);
+
+    const docBody = document.querySelector("body")
+    const result = document.createElement("div");
     if (computerChoice == "Rock" && playerChoice == "Paper") {
-        return "Winner";
+        result.textContent = "Winner! Your Score: " + ++playerScore + " Computer Score: " + computerScore;
+        docBody.appendChild(result);
+        if (playerScore == 5) result.textContent = "You win the game! Your Score: " + playerScore + " Computer Score: " + computerScore;
+        docBody.appendChild(result); 
     } else 
     if (computerChoice == "Paper" && playerChoice == "Scissors") {
-        return "Winner";
+        result.textContent = "Winner! Your Score: " + ++playerScore + " Computer Score: " + computerScore;
+        docBody.appendChild(result);
+        if (playerScore == 5) result.textContent = "You win the game! Your Score: " + playerScore + " Computer Score: " + computerScore;
+        docBody.appendChild(result); 
     } else 
     if (computerChoice == "Scissors" && playerChoice == "Rock") {
-        return "Winner";
+        result.textContent = "Winner! Your Score: " + ++playerScore + " Computer Score: " + computerScore;
+        docBody.appendChild(result);
+        if (playerScore == 5) result.textContent = "You win the game! Your Score: " + playerScore + " Computer Score: " + computerScore;
+        docBody.appendChild(result); 
     } else 
     if (computerChoice == "Rock" && playerChoice == "Scissors") {
-        return "Loser";
+        result.textContent = "Loser! Your Score: " + playerScore + " Computer Score: " + ++computerScore;
+        docBody.appendChild(result);
+        if (computerScore == 5) result.textContent = "You lose the game! Your Score: " + playerScore + " Computer Score: " + computerScore;
+        docBody.appendChild(result); 
     } else 
     if (computerChoice == "Paper" && playerChoice == "Rock") {
-        return "Loser";
+        result.textContent = "Loser! Your Score: " + playerScore + " Computer Score: " + ++computerScore;
+        docBody.appendChild(result);
+        if (computerScore == 5) result.textContent = "You lose the game! Your Score: " + playerScore + " Computer Score: " + computerScore;
+        docBody.appendChild(result); 
     } else 
     if (computerChoice == "Scissors" && playerChoice == "Paper") {
-        return "Loser";
+        result.textContent = "Loser! Your Score: " + playerScore + " Computer Score: " + ++computerScore;
+        docBody.appendChild(result);
+        if (computerScore == 5) result.textContent = "You lose the game! Your Score: " + playerScore + " Computer Score: " + computerScore;
+        docBody.appendChild(result); 
     } else 
     if (computerChoice == playerChoice ) {
-        return "Draw";
+        result.textContent = "Draw! Your Score: " + playerScore + " Computer Score: " + computerScore;
+        docBody.appendChild(result);
     } else 
-    return "Error";
-}
+    result.textContent = "Error! Try Again";
+    docBody.appendChild(result);
+        });
+      });
 
-let computer = 0;
-let player = 0;
 
-function round () {
-let score = game();
-console.log(score);
-if (score == "Draw") {
-    alert("Draw! Try Again!")
-    return round();
-} else if (score == "Error") {
-    alert("Error! Try Again!")
-    return round();
-} else if (score == "Winner") {
-    player = player+1;
-} else if (score == "Loser") {
-    computer = computer+1;
-}
-}
 
-function winner () {
-    if (computer > player) {
-        return "Computer Wins!"
-    } else {return "You Win!"}
-}
 
-for (i = 0; i<=4;i++) {
-    round ();
-}
-
-console.log("Final Score is, Computer: "+computer+" Player: "+player+", "+winner());
