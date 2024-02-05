@@ -1,5 +1,5 @@
 let options = ["Rock","Paper","Scissors"];
-
+let test = "test";
 function getComputerChoice () {
     let options = ["Rock","Paper","Scissors"];
     let random = Math.floor((Math.random() * options.length));
